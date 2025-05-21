@@ -6,6 +6,7 @@ import { Agency } from "@/routes/agency/agency.model"
 import { ErrorHandler, asyncCatch } from "@/middleware/errorHandler"
 import { createComplaintSchema, updateComplaintSchema } from "@/routes/complaint/complaint.schema";
 import { UserRole } from "@/utils/enums";
+import { z } from "zod";
 
 export const createComplaint = asyncCatch(async (req: Request, res: Response, next: NextFunction) => {
     // 1) Validate input
@@ -211,3 +212,50 @@ export const deleteComplaint = asyncCatch(async (req: Request, res: Response, ne
         data: null,
     })
 })
+
+export const updateComplaintStatus = asyncCatch(async (req: Request, res: Response, next: NextFunction) => {
+    // 1) Validate input
+    const statusSchema = z.object({
+        status: z.enum(['SUBMITTED', 'UNDER_REVIEW', 'IN_PROGRESS', 'RESOLVED', 'REJECTED', 'ESCALATED'])
+    });
+    const validatedData = statusSchema.parse(req.body);
+
+    // 2) Get complaint
+    const complaint = await Complaint.findById(req.params.id);
+    if (!complaint) {
+        return next(new ErrorHandler("Complaint not found", StatusCodes.NOT_FOUND));
+    }
+
+    // 3) Check permissions
+    if (req.user.role === UserRole.CITIZEN) {
+        return next(new ErrorHandler("Citizens cannot update complaint status", StatusCodes.FORBIDDEN));
+    }
+
+    if (req.user.role === UserRole.AGENCY_STAFF) {
+        // Agency staff can only update complaints handled by their agency
+        const agency = await Agency.findOne({ contactEmail: req.user.email }) as { _id: string } | null;
+        if (!agency || (complaint.handledBy && complaint.handledBy.toString() !== agency?._id.toString())) {
+            return next(new ErrorHandler("You do not have permission to update this complaint", StatusCodes.FORBIDDEN));
+        }
+    }
+
+    // 4) Update complaint status
+    const updatedComplaint = await Complaint.findByIdAndUpdate(
+        req.params.id,
+        { status: validatedData.status },
+        {
+            new: true,
+            runValidators: true,
+        }
+    )
+    .populate("submittedBy", "name email")
+    .populate("handledBy", "name contactEmail");
+
+    // 5) Send response
+    res.status(StatusCodes.OK).json({
+        status: "success",
+        data: {
+            complaint: updatedComplaint,
+        },
+    });
+});

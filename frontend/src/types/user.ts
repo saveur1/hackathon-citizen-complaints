@@ -1,5 +1,5 @@
 export interface User {
-    _id: Key | null | undefined
+    _id: string | null | undefined
     id: string
     name: string
     email: string

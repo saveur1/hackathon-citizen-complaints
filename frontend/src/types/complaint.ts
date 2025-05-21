@@ -1,9 +1,10 @@
 export interface Complaint {
-    id: string;
+    submittedBy: any;
+    _id: string;
     title: string;
     description: string;
     location: string;
-    status?: 'PENDING' | 'IN_PROGRESS' | 'RESOLVED' | 'REJECTED';
+    status?: 'SUBMITTED' | 'UNDER_REVIEW' | 'IN_PROGRESS' | 'RESOLVED' | 'REJECTED' | 'ESCALATED';
     category?: string;
     handledBy: string;
     createdAt: string;

@@ -7,7 +7,7 @@ const HomeHeader = () => {
     const { user, logout } = useUser()
 
     return (
-        <header className='z-50 min-h-[70px] p-4 sm:px-10'>
+        <header className='z-50 min-h-[70px] p-4 sm:px-10 sticky top-0 bg-white border-b'>
         <div className='relative flex flex-wrap items-center gap-4'>
             <Link to="/" className="flex items-center space-x-2">
                 <img src="/web_logo.png" alt="logo" className='w-20' />
@@ -30,24 +30,33 @@ const HomeHeader = () => {
                 </svg>
             </button>
 
-                    <ul className='z-50 gap-x-6 max-lg:fixed max-lg:left-0 max-lg:top-0 max-lg:h-full max-lg:w-1/2 max-lg:min-w-[300px] max-lg:space-y-3 max-lg:overflow-auto max-lg:bg-white max-lg:p-6 max-lg:shadow-md lg:ml-12 lg:flex'>
+            <ul className='z-50 gap-x-6 max-lg:fixed max-lg:left-0 max-lg:top-0 max-lg:h-full max-lg:w-1/2 max-lg:min-w-[300px] max-lg:space-y-3 max-lg:overflow-auto max-lg:bg-white max-lg:p-6 max-lg:shadow-md lg:ml-12 lg:flex'>
                 <li className='mb-6 hidden max-lg:block'>
-                <a href="javascript:void(0)"><img src="/web_logo.png" alt="logo" className='w-36' />
-                </a>
+                <Link to="/"><img src="/web_logo.png" alt="logo" className='w-36' />
+                </Link>
                 </li>
                 <li className='px-3 max-lg:border-b max-lg:py-3'>
-                <a href='javascript:void(0)'
-                    className='block font-semibold text-blue-600 transition-all hover:text-blue-600'>Home</a>
+                <Link to='/'
+                    className='block font-semibold text-blue-600 transition-all hover:text-blue-600'>Home</Link>
                 </li>
-                <li className='px-3 max-lg:border-b max-lg:py-3'><a href='javascript:void(0)'
-                    className='block font-semibold transition-all hover:text-blue-600'>Features</a>
+                <li className='px-3 max-lg:border-b max-lg:py-3'>
+                <Link to='/#Features'
+                    className='block font-semibold transition-all hover:text-blue-600'>Features</Link>
                 </li>
-                <li className='px-3 max-lg:border-b max-lg:py-3'><a href='javascript:void(0)'
-                    className='block font-semibold transition-all hover:text-blue-600'>Feedbacks</a>
+                <li className='px-3 max-lg:border-b max-lg:py-3'>
+                <Link to='/#Feedbacks'
+                    className='block font-semibold transition-all hover:text-blue-600'>Feedbacks</Link>
                 </li>
-                <li className='px-3 max-lg:border-b max-lg:py-3'><a href='javascript:void(0)'
-                    className='block font-semibold transition-all hover:text-blue-600'>About</a>
+                <li className='px-3 max-lg:border-b max-lg:py-3'>
+                <Link to='/#About'
+                    className='block font-semibold transition-all hover:text-blue-600'>About</Link>
                 </li>
+                {user && (
+                    <li className='px-3 max-lg:border-b max-lg:py-3'>
+                        <Link to='/track-ticket'
+                            className='block font-semibold transition-all hover:text-blue-600'>View Tickets</Link>
+                    </li>
+                )}
             </ul>
             </div>
 
@@ -78,12 +87,12 @@ const HomeHeader = () => {
                         </div>
                     ) : (
                         <>
-            <button 
-                className='rounded-xl bg-cyan-900 px-6 py-3 text-white transition-all hover:bg-cyan-800'
-                onClick={() => navigate('/login')}
-            >
-                Login
-            </button>
+                            <button 
+                                className='rounded-xl bg-cyan-900 px-6 py-3 text-white transition-all hover:bg-cyan-800'
+                                onClick={() => navigate('/login')}
+                            >
+                                Login
+                            </button>
                             <button 
                                 className='rounded-xl border border-cyan-900 px-6 py-3 text-cyan-900 transition-all hover:bg-cyan-50'
                                 onClick={() => navigate('/signup')}

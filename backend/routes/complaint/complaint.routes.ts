@@ -5,6 +5,7 @@ import {
     getComplaint,
     updateComplaint,
     deleteComplaint,
+    updateComplaintStatus,
 } from "@/routes/complaint/complaint.controller"
 import { protect, restrictTo } from "@/middleware/auth.middleware"
 import { UserRole } from "@/utils/enums"
@@ -97,5 +98,24 @@ registry.registerPath({
     request: { params: z.object({ id: z.string() }) },
     responses: createApiResponse(createComplaintSchema, "Success"),
 });
+
+// UPDATE COMPLAINT STATUS
+registry.registerPath({
+    method: "patch",
+    path: "/api/complaints/{id}/status",
+    description: "Update the status of a specific complaint by ID.",
+    tags: ["Complaints"],
+    security: [{ Authorization: [] }],
+    request: {
+        params: z.object({ id: z.string() }),
+        body: createApiReqestBody(z.object({
+            status: z.enum(['SUBMITTED', 'UNDER_REVIEW', 'IN_PROGRESS', 'RESOLVED', 'REJECTED', 'ESCALATED'])
+        })),
+    },
+    responses: createApiResponse(createComplaintSchema, "Success"),
+});
+
+// Add the new route
+router.patch("/:id/status", restrictTo(UserRole.AGENCY_STAFF, UserRole.ADMIN), updateComplaintStatus);
 
 export default router

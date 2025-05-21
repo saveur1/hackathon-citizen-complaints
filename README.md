@@ -55,7 +55,7 @@ A modern web application for managing and tracking citizen complaints and agency
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/ict-chamber-hackathon.git
+git clone https://github.com/saveur1/ict-chamber-hackathon.git
 cd ict-chamber-hackathon
 ```
 
@@ -94,14 +94,13 @@ npm run dev
 ```
 ict-chamber-hackathon/
 ├── backend/
-│   ├── src/
-│   │   ├── routes/         # API routes
-│   │   ├── controllers/    # Route controllers
-│   │   ├── models/        # Database models
-│   │   ├── middleware/    # Custom middleware
-│   │   ├── utils/         # Utility functions
-│   │   └── api-docs/      # API documentation
-│   └── tests/             # Backend tests
+│   ├── routes/         # API routes
+│   ├── controllers/    # Route controllers
+│   ├── models/         # Database models
+│   ├── middleware/     # Custom middleware
+│   ├── utils/          # Utility functions
+│   └── api-docs/       # API documentation
+|
 └── frontend/
     ├── src/
     │   ├── app/           # Next.js app directory
@@ -139,12 +138,9 @@ API documentation is available at `/api-docs` when running the backend server. T
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Team
+## 👥 Author
 
-- [Your Name] - Lead Developer
-- [Team Member 2] - Frontend Developer
-- [Team Member 3] - Backend Developer
-- [Team Member 4] - UI/UX Designer
+- Bikorimana Saveur
 
 ## 🙏 Acknowledgments
 
