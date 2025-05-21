@@ -1,0 +1,14 @@
+export enum UserRole {
+  CITIZEN = "CITIZEN",
+  AGENCY_STAFF = "AGENCY_STAFF",
+  ADMIN = "ADMIN",
+}
+
+export enum ComplaintStatus {
+  SUBMITTED = "SUBMITTED",
+  UNDER_REVIEW = "UNDER_REVIEW",
+  IN_PROGRESS = "IN_PROGRESS",
+  RESOLVED = "RESOLVED",
+  REJECTED = "REJECTED",
+  ESCALATED = "ESCALATED",
+}
