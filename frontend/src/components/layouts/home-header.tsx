@@ -1,10 +1,24 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useUser } from '@/Context/user-context'
-import { FaUserCircle } from 'react-icons/fa'
+import { FaUserCircle, FaChevronDown, FaSignOutAlt, FaUser, FaTachometerAlt, FaBuilding } from 'react-icons/fa'
+import { useState, useRef, useEffect } from 'react'
 
 const HomeHeader = () => {
     const navigate = useNavigate()
     const { user, logout } = useUser()
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+    const dropdownRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsDropdownOpen(false)
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => document.removeEventListener('mousedown', handleClickOutside)
+    }, [])
 
     return (
         <header className='z-50 min-h-[70px] p-4 sm:px-10 sticky top-0 bg-white border-b'>
@@ -63,27 +77,73 @@ const HomeHeader = () => {
                 <div className='ml-auto flex items-center gap-4'>
                     {user ? (
                         <div className="flex items-center gap-4">
-                            <div className="flex items-center gap-2">
-                                {user.profilePicture ? (
-                                    <img 
-                                        src={user.profilePicture} 
-                                        alt={user.name} 
-                                        className="h-10 w-10 rounded-full object-cover"
-                                    />
-                                ) : (
-                                    <FaUserCircle className="h-10 w-10 text-gray-400" />
+                            <div className="relative" ref={dropdownRef}>
+                                <button
+                                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                                    className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+                                >
+                                    {user.profilePicture ? (
+                                        <img 
+                                            src={user.profilePicture} 
+                                            alt={user.name} 
+                                            className="h-10 w-10 rounded-full object-cover"
+                                        />
+                                    ) : (
+                                        <FaUserCircle className="h-10 w-10 text-gray-400" />
+                                    )}
+                                    <div className="flex flex-col items-start">
+                                        <span className="text-sm font-medium text-gray-900">{user.name}</span>
+                                        <span className="text-xs text-gray-500 capitalize">{user.role}</span>
+                                    </div>
+                                    <FaChevronDown className={`h-4 w-4 text-gray-500 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                                </button>
+
+                                {isDropdownOpen && (
+                                    <div className="absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                        <Link
+                                            to="/profile"
+                                            className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                            onClick={() => setIsDropdownOpen(false)}
+                                        >
+                                            <FaUser className="h-4 w-4" />
+                                            Profile
+                                        </Link>
+
+                                        {user.role === 'ADMIN' && (
+                                            <Link
+                                                to="/dashboard"
+                                                className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                onClick={() => setIsDropdownOpen(false)}
+                                            >
+                                                <FaTachometerAlt className="h-4 w-4" />
+                                                Dashboard
+                                            </Link>
+                                        )}
+
+                                        {user.role === 'AGENCY_STAFF' && (
+                                            <Link
+                                                to="/agency-staff"
+                                                className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                onClick={() => setIsDropdownOpen(false)}
+                                            >
+                                                <FaBuilding className="h-4 w-4" />
+                                                Agency Staff
+                                            </Link>
+                                        )}
+
+                                        <button
+                                            onClick={() => {
+                                                setIsDropdownOpen(false)
+                                                logout()
+                                            }}
+                                            className="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                                        >
+                                            <FaSignOutAlt className="h-4 w-4" />
+                                            Logout
+                                        </button>
+                                    </div>
                                 )}
-                                <div className="flex flex-col">
-                                    <span className="text-sm font-medium text-gray-900">{user.name}</span>
-                                    <span className="text-xs text-gray-500 capitalize">{user.role}</span>
-                                </div>
                             </div>
-                            <button 
-                                onClick={logout}
-                                className="rounded-xl bg-red-600 px-4 py-2 text-sm text-white transition-all hover:bg-red-700"
-                            >
-                                Logout
-                            </button>
                         </div>
                     ) : (
                         <>
@@ -103,9 +163,9 @@ const HomeHeader = () => {
                     )}
             <button id="toggleOpen" className='ml-7 lg:hidden'>
                 <svg className="size-7" fill="#000" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd"
-                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                    clipRule="evenodd"></path>
+                    <path fillRule="evenodd"
+                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                        clipRule="evenodd"></path>
                 </svg>
             </button>
             </div>

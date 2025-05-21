@@ -6,6 +6,8 @@ import { pino } from "pino";
 import { openAPIRouter } from "@/api-docs/openAPIRouter";
 import errorHandler from "@/middleware/errorHandler";
 import rateLimiter from "@/middleware/rateLimiter";
+import { env } from "@/config/envConfig";
+import path from "path";
 
 // Import routes
 import authRoutes from "@/routes/auth/auth.routes"
@@ -34,9 +36,16 @@ app.use("/api/agencies", agencyRoutes)
 app.use("/api/users", userRoutes)
 
 // Swagger UI
-app.use(openAPIRouter);
+app.use("/api/docs", openAPIRouter);
+
+if(env.NODE_ENV === "production"){
+    app.use(express.static(path.join(__dirname,"../frontend/build")));
+
+    app.get("*",(req,res)=>{
+        res.sendFile(path.resolve(path.join(__dirname,"../frontend/dist/index.html")));
+    })
+}
 
 // Error handlers
 app.use(errorHandler());
-
 export { app, logger };

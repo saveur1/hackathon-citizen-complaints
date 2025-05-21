@@ -89,7 +89,7 @@ const DashboardPage = () => {
                         <div className="flow-root">
                             <ul role="list" className="-mb-8">
                                 {complaints?.slice(0, 4).map((complaint: Complaint, index: number) => (
-                                    <li key={complaint.id}>
+                                    <li key={complaint._id}>
                                         <div className="relative pb-8">
                                             {index !== complaints.length - 1 && (
                                                 <span

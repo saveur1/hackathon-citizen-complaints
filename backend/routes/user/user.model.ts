@@ -10,6 +10,7 @@ export interface IUser extends Document {
     createdAt: Date
     updatedAt: Date
     complaintsSubmitted: mongoose.Types.ObjectId[]
+    agencyId?: mongoose.Types.ObjectId
     responses: mongoose.Types.ObjectId[]
     resetPasswordToken?: string
     resetPasswordExpires?: Date
@@ -33,6 +34,10 @@ const userSchema = new Schema<IUser>(
                 validator: (v: string) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v),
                 message: "Please enter a valid email",
             },
+        },
+        agencyId: {
+            type: Schema.Types.ObjectId,
+            ref: "Agency",
         },
         password: {
             type: String,
