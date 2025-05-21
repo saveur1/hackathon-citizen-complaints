@@ -18,7 +18,7 @@ const Home = () => {
                         </button>
                     </div>
                 </div>
-                <div className="relative z-50">
+                <div className="relative z-40">
                     <ComplaintForm />
                 </div>
             </div>

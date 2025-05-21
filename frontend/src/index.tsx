@@ -10,6 +10,8 @@ import UserDashboardLayout from 'components/layouts/user-dashboard'
 import SimpleLayout from 'components/layouts/simple-layout'
 import { UserProvider } from '@/Context/user-context'
 import AdminLayout from './components/layouts/dashboard-layout'
+import { ComplaintsProvider } from './Context/complaints-context'
+import { AgenciesProvider } from './Context/agencies-context'
 // import { AdminLayout } from './components/layouts/dashboard-layout'
 
 const container = document.getElementById('root') as HTMLDivElement
@@ -45,7 +47,11 @@ root.render(
     <StrictMode>
         <BrowserRouter>
             <UserProvider>
-                <App />
+                <ComplaintsProvider>
+                    <AgenciesProvider>
+                        <App />
+                    </AgenciesProvider>
+                </ComplaintsProvider>
             </UserProvider>
         </BrowserRouter>
     </StrictMode>,

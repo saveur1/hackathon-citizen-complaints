@@ -6,7 +6,7 @@ interface ComplaintsContextType {
     complaints: Complaint[];
     loading: boolean;
     error: string | null;
-    submitComplaint: (complaintData: Omit<Complaint, 'id' | 'createdAt' | 'updatedAt'>) => Promise<void>;
+    submitComplaint: (complaintData: Omit<Complaint, '_id' | 'submittedBy' | 'createdAt' | 'updatedAt'>) => Promise<void>;
     updateComplaintStatus: (id: string, status: Complaint['status']) => Promise<void>;
 }
 
@@ -48,7 +48,7 @@ export const ComplaintsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         fetchComplaints();
     }, []);
 
-    const submitComplaint = async (complaintData: Omit<Complaint, 'id' | 'createdAt' | 'updatedAt'>) => {
+    const submitComplaint = async (complaintData: Omit<Complaint, '_id' | 'submittedBy' | 'createdAt' | 'updatedAt'>) => {
         try {
             setLoading(true);
             const response = await fetch(`${API_URL}/complaints`, {
@@ -84,10 +84,10 @@ export const ComplaintsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
                 throw new Error('Failed to update complaint status');
             }
 
-            const updatedComplaint = await response.json();
+            const updatedComplaint = (await response.json()).data.complaint;
             setComplaints(prev =>
                 prev.map(complaint =>
-                    complaint.id === id ? updatedComplaint : complaint
+                    complaint._id === id ? updatedComplaint : complaint
                 )
             );
         } catch (err) {

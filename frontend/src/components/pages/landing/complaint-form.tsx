@@ -42,7 +42,7 @@ const ComplaintForm = () => {
         try {
             await submitComplaint({
                 ...data,
-                handledBy: data.handledBy
+                handledBy: data.handledBy,
             });
 
             // Reset form after successful submission

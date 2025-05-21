@@ -88,7 +88,7 @@ const DashboardPage = () => {
                     <div className="p-6">
                         <div className="flow-root">
                             <ul role="list" className="-mb-8">
-                                {complaints?.slice(0, 5).map((complaint: Complaint, index: number) => (
+                                {complaints?.slice(0, 4).map((complaint: Complaint, index: number) => (
                                     <li key={complaint.id}>
                                         <div className="relative pb-8">
                                             {index !== complaints.length - 1 && (
