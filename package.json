@@ -1,7 +1,7 @@
 {
     "name": "citizen-complaints",
     "version": "1.0.14",
-    "description": "An Express boilerplate backend",
+    "description": "An Express citizen complaints backend",
     "author": "Bikorimana Saveur",
     "license": "MIT",
     "main": "index.ts",
@@ -15,8 +15,7 @@
         "lint": "biome check backend/",
         "lint:fix": "biome check backend/ --fix",
         "format": "biome format backend/",
-        "test": "vitest run",
-        "prepare": "husky"
+        "test": "vitest run"
     },
     "dependencies": {
         "@asteasolutions/zod-to-openapi": "^7.0.0",
