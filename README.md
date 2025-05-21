@@ -1,73 +1,153 @@
-# 🚀 Express TypeScript Boilerplate 2024
+# 🏛️ ICT Chamber Complaint Management System
 
-[![Build](https://github.com/edwinhern/express-typescript-2024/actions/workflows/build.yml/badge.svg)](https://github.com/edwinhern/express-typescript-2024/actions/workflows/build.yml)
-[![Test](https://github.com/edwinhern/express-typescript-2024/actions/workflows/test.yml/badge.svg)](https://github.com/edwinhern/express-typescript-2024/actions/workflows/test.yml)
-[![Code Quality](https://github.com/edwinhern/express-typescript-2024/actions/workflows/code-quality.yml/badge.svg)](https://github.com/edwinhern/express-typescript-2024/actions/workflows/code-quality.yml)
-[![Docker Image CI](https://github.com/edwinhern/express-typescript-2024/actions/workflows/docker-image.yml/badge.svg)](https://github.com/edwinhern/express-typescript-2024/actions/workflows/docker-image.yml)
+A modern web application for managing and tracking citizen complaints and agency responses. Built with React, TypeScript, and Express.js.
 
-``` code
-Hey There! 🙌 
-🤾 that ⭐️ button if you like this boilerplate. 
+## 🌟 Features
+
+### For Citizens
+- 📝 Submit complaints with detailed information
+- 📍 Specify complaint location
+- 🏢 Choose relevant agency/category
+- 📱 Track complaint status
+- 🔔 Receive notifications on updates
+- 👤 User profile management
+
+### For Agencies
+- 📊 View and manage assigned complaints
+- 📝 Respond to citizen complaints
+- 📈 Track complaint statistics
+- 👥 Manage agency staff
+- 🔔 Real-time notifications
+
+### For Administrators
+- 👥 User management
+- 🏢 Agency management
+- 📊 System-wide analytics
+- 🔒 Role-based access control
+- 📝 Complaint oversight
+
+## 🛠️ Tech Stack
+
+### Frontend
+- React.js with TypeScript
+- Next.js for server-side rendering
+- Tailwind CSS for styling
+- React Context for state management
+- React Router for navigation
+- React Icons for UI elements
+
+### Backend
+- Express.js with TypeScript
+- MongoDB with Mongoose
+- JWT for authentication
+- Zod for validation
+- OpenAPI/Swagger for API documentation
+- Pino for logging
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v18 or higher)
+- MongoDB
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/ict-chamber-hackathon.git
+cd ict-chamber-hackathon
 ```
 
-## 🌟 Introduction
+2. Install dependencies:
+```bash
+# Install backend dependencies
+cd backend
+npm install
 
-Welcome to the Express TypeScript Boilerplate 2024 – a streamlined, efficient, and scalable foundation for building powerful backend services with modern tools and practices in Express.js and TypeScript.
+# Install frontend dependencies
+cd ../frontend
+npm install
+```
 
-## 💡 Motivation
+3. Set up environment variables:
+```bash
+# Backend
+cp backend/.env.example backend/.env
+# Frontend
+cp frontend/.env.example frontend/.env
+```
 
-This boilerplate aims to:
+4. Start the development servers:
+```bash
+# Start backend server
+cd backend
+npm run dev
 
-- ✨ Reduce setup time for new projects
-- 📊 Ensure code consistency and quality
-- ⚡  Facilitate rapid development
-- 🛡️ Encourage best practices in security, testing, and performance
+# Start frontend server
+cd ../frontend
+npm run dev
+```
 
-## 🚀 Features
+## 📁 Project Structure
 
-- 📁 Modular Structure: Organized by feature for easy navigation and scalability
-- 💨 Faster Execution with tsx: Rapid TypeScript execution with `tsx` and type checking with `tsc`
-- 🌐 Stable Node Environment: Latest LTS Node version in `.nvmrc`
-- 🔧 Simplified Environment Variables: Managed with Envalid
-- 🔗 Path Aliases: Cleaner code with shortcut imports
-- 🔄 Renovate Integration: Automatic updates for dependencies
-- 🔒 Security: Helmet for HTTP header security and CORS setup
-- 📊 Logging: Efficient logging with `pino-http`
-- 🧪 Comprehensive Testing: Setup with Vitest and Supertest
-- 🔑 Code Quality Assurance: Husky and lint-staged for consistent quality
-- ✅ Unified Code Style: `Biomejs` for consistent coding standards
-- 📃 API Response Standardization: `ServiceResponse` class for consistent API responses
-- 🐳 Docker Support: Ready for containerization and deployment
-- 📝 Input Validation with Zod: Strongly typed request validation using `Zod`
-- 🧩 Swagger UI: Interactive API documentation generated from Zod schemas
+```
+ict-chamber-hackathon/
+├── backend/
+│   ├── src/
+│   │   ├── routes/         # API routes
+│   │   ├── controllers/    # Route controllers
+│   │   ├── models/        # Database models
+│   │   ├── middleware/    # Custom middleware
+│   │   ├── utils/         # Utility functions
+│   │   └── api-docs/      # API documentation
+│   └── tests/             # Backend tests
+└── frontend/
+    ├── src/
+    │   ├── app/           # Next.js app directory
+    │   ├── components/    # React components
+    │   ├── Context/       # React context providers
+    │   ├── types/         # TypeScript types
+    │   └── utils/         # Utility functions
+    └── public/            # Static files
+```
 
-## 🛠️ Getting Started
+## 🔒 Authentication
 
-### Video Demo
+The system uses JWT (JSON Web Tokens) for authentication with the following roles:
+- Citizen
+- Agency Staff
+- Administrator
 
-For a visual guide, watch the [video demo](https://github.com/user-attachments/assets/b1698dac-d582-45a0-8d61-31131732b74e) to see the setup and running of the project.
+## 📝 API Documentation
 
-### Step-by-Step Guide
+API documentation is available at `/api-docs` when running the backend server. The documentation is generated using OpenAPI/Swagger and includes:
+- All available endpoints
+- Request/response schemas
+- Authentication requirements
+- Example requests
 
-#### Step 1: 🚀 Initial Setup
+## 🤝 Contributing
 
-- Clone the repository: `git clone https://github.com/edwinhern/express-typescript-2024.git`
-- Navigate: `cd express-typescript-2024`
-- Install dependencies: `npm ci`
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-#### Step 2: ⚙️ Environment Configuration
+## 📄 License
 
-- Create `.env`: Copy `.env.template` to `.env`
-- Update `.env`: Fill in necessary environment variables
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-#### Step 3: 🏃‍♂️ Running the Project
+## 👥 Team
 
-- Development Mode: `npm run dev`
-- Building: `npm run build`
-- Production Mode: Set `.env` to `NODE_ENV="production"` then `npm run build && npm run start`
+- [Your Name] - Lead Developer
+- [Team Member 2] - Frontend Developer
+- [Team Member 3] - Backend Developer
+- [Team Member 4] - UI/UX Designer
 
-## 🤝 Feedback and Contributions
+## 🙏 Acknowledgments
 
-We'd love to hear your feedback and suggestions for further improvements. Feel free to contribute and join us in making backend development cleaner and faster!
-
-🎉 Happy coding!
+- ICT Chamber for organizing the hackathon
+- All contributors and supporters
+- Open source community for the amazing tools and libraries
