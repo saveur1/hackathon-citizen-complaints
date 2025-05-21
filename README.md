@@ -62,18 +62,17 @@ cd ict-chamber-hackathon
 2. Install dependencies:
 ```bash
 # Install backend dependencies
-cd backend
 npm install
 
 # Install frontend dependencies
-cd ../frontend
+cd ./frontend
 npm install
 ```
 
 3. Set up environment variables:
 ```bash
 # Backend
-cp backend/.env.example backend/.env
+cp .env.example .env
 # Frontend
 cp frontend/.env.example frontend/.env
 ```
@@ -81,11 +80,10 @@ cp frontend/.env.example frontend/.env
 4. Start the development servers:
 ```bash
 # Start backend server
-cd backend
 npm run dev
 
 # Start frontend server
-cd ../frontend
+cd ./frontend
 npm run dev
 ```
 
