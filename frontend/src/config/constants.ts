@@ -1,1 +1,1 @@
-export const API_URL =  "https://citizen-complaints.onrender.com"; //'http://localhost:8080/api'; 
+export const API_URL =  "https://citizen-complaints.onrender.com/api"; //'http://localhost:8080/api'; 
