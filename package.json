@@ -15,7 +15,8 @@
         "lint": "biome check backend/",
         "lint:fix": "biome check backend/ --fix",
         "format": "biome format backend/",
-        "test": "vitest run"
+        "test": "vitest run",
+        "prepare": "husky"
     },
     "dependencies": {
         "@asteasolutions/zod-to-openapi": "^7.0.0",
