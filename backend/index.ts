@@ -1,5 +1,5 @@
 import { env } from "@/config/envConfig";
-import { app, logger } from "@/server";
+import {  app, logger } from "@/server";
 import { connectToDatabase } from "@/config/database";
 
 

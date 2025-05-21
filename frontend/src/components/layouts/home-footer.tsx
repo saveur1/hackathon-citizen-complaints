@@ -53,7 +53,7 @@ const HomeFooter = () => {
             </h2>
             <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
                 <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-                    <div className="space-y-8">
+                    <div className="space-y-8 col-span-1">
                         <h3 className="text-2xl font-bold text-indigo-600">Citizen Engagement System</h3>
                         <p className="text-sm leading-6 text-gray-600">
                             Empowering citizens and government agencies through efficient communication and complaint management.

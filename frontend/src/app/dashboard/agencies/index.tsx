@@ -349,7 +349,7 @@ const AgenciesPage = () => {
                                             .filter(complaint => (complaint.handledBy as any)._id === selectedAgency._id)
                                             .slice(0, 3)
                                             .map(complaint => (
-                                                <div key={complaint.id} className="bg-gray-100 p-3 rounded-lg">
+                                                <div key={complaint._id} className="bg-gray-100 p-3 rounded-lg">
                                                     <p className="text-sm font-medium text-gray-900">{complaint.title}</p>
                                                     <p className="text-sm text-gray-500 mt-1">{complaint.description}</p>
                                                     <div className="mt-2 flex items-center justify-between">
