@@ -1,6 +1,9 @@
 # 🏛️ ICT Chamber Complaint Management System
 
 A modern web application for managing and tracking citizen complaints and agency responses. Built with React, TypeScript, and Express.js. You can access [Live Demo here](https://citizen-complaints.onrender.com)
+- Creadentials for Admin:
+    * Email: bikorimanaxavier@gmail.com
+    * Password: saveur123
 
 ## 🌟 Features
 
