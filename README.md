@@ -1,6 +1,6 @@
 # 🏛️ ICT Chamber Complaint Management System
 
-A modern web application for managing and tracking citizen complaints and agency responses. Built with React, TypeScript, and Express.js.
+A modern web application for managing and tracking citizen complaints and agency responses. Built with React, TypeScript, and Express.js. You can access [Live Demo here](https://citizen-complaints.onrender.com)
 
 ## 🌟 Features
 
@@ -43,6 +43,9 @@ A modern web application for managing and tracking citizen complaints and agency
 - Zod for validation
 - OpenAPI/Swagger for API documentation
 - Pino for logging
+
+### System Class Diagram
+![Class Diagram](https://github.com/saveur1/hackathon-citizen-complaints/blob/main/frontend/public/class-diagram.png)
 
 ## 🚀 Getting Started
 
@@ -136,7 +139,7 @@ API documentation is available at `/api-docs` when running the backend server. T
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Author
+## 🤵🏽‍♂️ Author
 
 - Bikorimana Saveur
 
