@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const ComplaintForm = () => {
     const navigate = useNavigate();
     const { agencies, error: agenciesError, loading: loadingAgencies } = useAgencies();
-    const { submitComplaint, loading: submittingComplaint, error: submitError } = useComplaints();
+    const { submitComplaint, loading: submittingComplaint } = useComplaints();
     const { user } = useUser();
     const [formData, setFormData] = useState({
         title: "",
@@ -92,9 +92,9 @@ const ComplaintForm = () => {
             className="mx-auto max-w-xl space-y-6 rounded-xl border bg-transparent p-8 shadow-md"
             onSubmit={handleSubmit}
         >
-            {user && (agenciesError || submitError) && (
+            {user && agenciesError && (
                 <div className="rounded-lg bg-red-50 p-4 text-sm text-red-600">
-                    {agenciesError || submitError}
+                    {agenciesError}
                 </div>
             )}
 

@@ -3,6 +3,7 @@ import { useComplaints } from '@/Context/complaints-context';
 import { FaSearch, FaBuilding, FaUser, FaCalendarAlt, FaMapMarkerAlt, FaExclamationTriangle } from 'react-icons/fa';
 import { Complaint } from '@/types/complaint';
 import HomeHeader from '@/components/layouts/home-header';
+import { useUser } from '@/Context/user-context';
 
 const TrackTicketPage = () => {
     const { complaints, loading } = useComplaints();

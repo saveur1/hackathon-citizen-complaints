@@ -5,6 +5,7 @@ export interface User {
     email: string
     role: 'CITIZEN' | 'ADMIN' | 'AGENCY_STAFF'
     profilePicture?: string
+    agencyId?: string
     createdAt: string
     updatedAt: string
     profile?: {

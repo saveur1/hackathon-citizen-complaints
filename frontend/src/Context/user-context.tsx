@@ -94,6 +94,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
             // Navigate based on user role
             if (data.data.user.role === 'ADMIN') {
                 navigate('/dashboard')
+            } else if (data.data.user.role === 'AGENCY_STAFF') {
+                navigate('/agency-staff')
             } else {
                 navigate('/')
             }

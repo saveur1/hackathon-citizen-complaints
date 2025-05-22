@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { FaUserPlus, FaSearch, FaEdit, FaTrash, FaUserCircle, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { API_URL } from '@/config/constants';
 import { User } from '@/types/user';
+import { useAgencies } from '@/Context/agencies-context'
 
 const UsersPage = () => {
+    const { agencies } = useAgencies();
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -13,8 +15,9 @@ const UsersPage = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
+        password: '',
         role: 'CITIZEN',
-        password: ''
+        agencyId: ''
     });
     const [formError, setFormError] = useState<string | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
@@ -84,7 +87,8 @@ const UsersPage = () => {
                 name: '',
                 email: '',
                 role: 'CITIZEN',
-                password: ''
+                password: '',
+                agencyId: ''
             });
         } catch (err) {
             setFormError(err instanceof Error ? err.message : 'An error occurred');
@@ -99,7 +103,8 @@ const UsersPage = () => {
             name: user.name,
             email: user.email,
             role: user.role,
-            password: ''
+            password: '',
+            agencyId: user.agencyId || ''
         });
         setIsModalOpen(true);
     };
@@ -137,7 +142,8 @@ const UsersPage = () => {
             name: '',
             email: '',
             role: 'CITIZEN',
-            password: ''
+            password: '',
+            agencyId: ''
         });
     };
 
@@ -188,7 +194,8 @@ const UsersPage = () => {
                                 name: '',
                                 email: '',
                                 role: 'CITIZEN',
-                                password: ''
+                                password: '',
+                                agencyId: ''
                             });
                             setIsModalOpen(true);
                         }}
@@ -418,6 +425,27 @@ const UsersPage = () => {
                                     <option value="ADMIN">Admin</option>
                                 </select>
                             </div>
+                            {formData.role === 'AGENCY_STAFF' && (
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700">
+                                        Agency
+                                    </label>
+                                    <select
+                                        name="agencyId"
+                                        value={formData.agencyId}
+                                        onChange={handleInputChange}
+                                        className="mt-1 block w-full rounded border border-gray-300 py-2 px-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm outline-none"
+                                        required={formData.role === 'AGENCY_STAFF'}
+                                    >
+                                        <option value="">Select an agency</option>
+                                        {agencies.map((agency) => (
+                                            <option key={agency._id} value={agency._id}>
+                                                {agency.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            )}
                             {!selectedUser && (
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700">

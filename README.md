@@ -58,8 +58,8 @@ A modern web application for managing and tracking citizen complaints and agency
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/saveur1/ict-chamber-hackathon.git
-cd ict-chamber-hackathon
+git clone https://github.com/saveur1/hackathon-citizen-complaints.git
+cd hackathon-citizen-complaints
 ```
 
 2. Install dependencies:
